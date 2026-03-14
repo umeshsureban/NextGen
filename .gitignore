@@ -1,0 +1,31 @@
+# Dev Tooling
+serve.mjs
+screenshot.mjs
+package.json
+package-lock.json
+node_modules/
+
+# Logs & Build artifacts
+.build.log
+server.log
+
+# Documentation & Guidelines (not needed in deployment)
+CLAUDE.md
+SRAVAN_PROFILE.md
+VNA-Brand-Guidelines-PROFESSIONAL.pdf
+
+# Screenshots (local development only)
+temporary screenshots/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Unused assets
+brand_assets/flat logo.svg
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
