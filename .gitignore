@@ -29,3 +29,8 @@ brand_assets/flat logo.svg
 .idea/
 *.swp
 *.swo
+
+# Deployment & Secrets (DO NOT COMMIT)
+vedicmaths_deploy_key
+vedicmaths_deploy_key.pub
+.vscode/sftp.json
