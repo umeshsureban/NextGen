@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Test</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background: #0F2542;
+            font-family: Arial, sans-serif;
+            color: white;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        video {
+            width: 100%;
+            height: auto;
+            background: black;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        .info {
+            background: rgba(212, 175, 55, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #D4AF37;
+        }
+        code {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: #D4AF37;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎬 Video Playback Test</h1>
+
+        <div class="info">
+            <strong>Test 1: Simple Video Tag with Controls</strong>
+            <p>This video has controls visible so you can see the timeline.</p>
+        </div>
+        <video id="testVideo1" controls autoplay>
+            <source src="/VedicMaths.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+
+        <div class="info">
+            <strong>Test 2: Hidden Controls (Like Landing Page)</strong>
+            <p>This matches the landing page setup (autoplay, muted, loop, no controls).</p>
+        </div>
+        <video id="testVideo2" autoplay muted loop playsinline>
+            <source src="/VedicMaths.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+
+        <div class="info">
+            <strong>Status & Debug Info</strong>
+            <p>Video 1 (with controls):</p>
+            <p>Duration: <code id="dur1">Loading...</code></p>
+            <p>Ready State: <code id="ready1">Loading...</code></p>
+            <p>Video 2 (landing page style):</p>
+            <p>Duration: <code id="dur2">Loading...</code></p>
+            <p>Ready State: <code id="ready2">Loading...</code></p>
+            <p>Playback Status: <code id="status">Waiting for video metadata...</code></p>
+        </div>
+    </div>
+
+    <script>
+        const video1 = document.getElementById('testVideo1');
+        const video2 = document.getElementById('testVideo2');
+        const status = document.getElementById('status');
+
+        // Log when metadata loads
+        video1.addEventListener('loadedmetadata', function() {
+            document.getElementById('dur1').textContent = video1.duration.toFixed(2) + 's';
+            document.getElementById('ready1').textContent = video1.readyState;
+            status.textContent = 'Video 1 metadata loaded successfully ✓';
+        });
+
+        video2.addEventListener('loadedmetadata', function() {
+            document.getElementById('dur2').textContent = video2.duration.toFixed(2) + 's';
+            document.getElementById('ready2').textContent = video2.readyState;
+            status.textContent = 'Video 2 metadata loaded successfully ✓';
+        });
+
+        // Log errors
+        video1.addEventListener('error', function() {
+            status.textContent = '❌ Video 1 Error: ' + (video1.error ? video1.error.message : 'Unknown error');
+        });
+
+        video2.addEventListener('error', function() {
+            status.textContent = '❌ Video 2 Error: ' + (video2.error ? video2.error.message : 'Unknown error');
+        });
+
+        // Log play/pause
+        video1.addEventListener('play', function() {
+            console.log('Video 1 started playing');
+            status.textContent = 'Video 1 is PLAYING ▶️';
+        });
+
+        video2.addEventListener('play', function() {
+            console.log('Video 2 started playing');
+            status.textContent = 'Video 2 is PLAYING ▶️';
+        });
+
+        video1.addEventListener('pause', function() {
+            console.log('Video 1 paused');
+        });
+
+        video2.addEventListener('pause', function() {
+            console.log('Video 2 paused');
+        });
+    </script>
+</body>
+</html>

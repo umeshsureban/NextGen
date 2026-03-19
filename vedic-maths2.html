@@ -1,0 +1,1326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vedic Mathematics Demo | Error-Free Math for Board Exams</title>
+    <link rel="icon" type="image/svg+xml" href="/brand_assets/Favicon_Logo.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Sora:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --gold: #D4AF37;
+            --gold-dark: #B8860B;
+            --navy: #0F2542;
+            --charcoal: #1a1a1a;
+            --white: #FFFFFF;
+            --light-gray: #F5F5F5;
+            --accent: #2E5090;
+        }
+
+        body {
+            font-family: 'Sora', sans-serif;
+            color: var(--charcoal);
+            background-color: var(--white);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+
+        h4, h5 {
+            font-family: 'Sora', sans-serif;
+            font-weight: 700;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 50;
+            background: rgba(15, 37, 66, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo-nav {
+            height: 40px;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-nav img {
+            height: 100%;
+            width: auto;
+        }
+
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            margin: 0 1.5rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: var(--gold);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            background: var(--gold);
+            color: var(--charcoal);
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid var(--gold);
+            margin: 0;
+        }
+
+        .nav-cta:hover {
+            background: transparent;
+            color: var(--gold);
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 60px;
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--navy) 0%, #1a3a52 100%);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -5%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 25s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(30px); }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-container {
+            max-width: 1000px;
+            width: 100%;
+            position: relative;
+            z-index: 10;
+        }
+
+        .hero-content {
+            text-align: center;
+            animation: slideUp 1s ease-out;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(212, 175, 55, 0.15);
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            animation: slideUp 1s ease-out 0.1s both;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 7vw, 3.5rem);
+            color: var(--white);
+            margin-bottom: 1rem;
+            animation: slideUp 1s ease-out 0.2s both;
+            line-height: 1.15;
+        }
+
+        .hero .subtitle {
+            font-size: 1.4rem;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+            animation: slideUp 1s ease-out 0.25s both;
+            font-weight: 600;
+        }
+
+        .hero p {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 2.5rem;
+            animation: slideUp 1s ease-out 0.3s both;
+            font-weight: 300;
+            line-height: 1.7;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            animation: slideUp 1s ease-out 0.35s both;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 50px;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--gold);
+            color: var(--charcoal);
+            border: 2px solid var(--gold);
+            animation: glow 3s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(212, 175, 55, 0.6), 0 0 40px rgba(212, 175, 55, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 30px rgba(212, 175, 55, 0.8), 0 0 60px rgba(212, 175, 55, 0.5);
+            }
+        }
+
+        .btn-primary:hover {
+            background: transparent;
+            color: var(--gold);
+            transform: translateY(-3px);
+            box-shadow: 0 0 40px rgba(212, 175, 55, 1), 0 0 80px rgba(212, 175, 55, 0.6);
+            animation: glow 1.5s ease-in-out infinite;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+            animation: glowSecondary 3s ease-in-out infinite;
+        }
+
+        @keyframes glowSecondary {
+            0%, 100% {
+                box-shadow: 0 0 15px rgba(255, 255, 255, 0.4), 0 0 30px rgba(255, 255, 255, 0.2);
+            }
+            50% {
+                box-shadow: 0 0 25px rgba(255, 255, 255, 0.6), 0 0 50px rgba(255, 255, 255, 0.3);
+            }
+        }
+
+        .btn-secondary:hover {
+            background: var(--white);
+            color: var(--navy);
+            transform: translateY(-3px);
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.8), 0 0 60px rgba(255, 255, 255, 0.4);
+            animation: glowSecondary 1.5s ease-in-out infinite;
+        }
+
+        /* Problem Section */
+        .problems-section {
+            padding: 5rem 2rem;
+            background: var(--light-gray);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            color: var(--navy);
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .problems-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            align-items: stretch;
+        }
+
+        .problem-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 8px;
+            border-left: 4px solid #E74C3C;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            animation: slideUp 1s ease-out forwards, cardGlow 4s ease-in-out infinite;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .problem-card:nth-child(1) { animation-delay: 0.1s, 0s; }
+        .problem-card:nth-child(2) { animation-delay: 0.2s, 0.2s; }
+        .problem-card:nth-child(3) { animation-delay: 0.3s, 0.4s; }
+
+        @keyframes cardGlow {
+            0%, 100% {
+                box-shadow: 0 8px 24px rgba(231, 76, 60, 0.08), inset 0 0 20px rgba(231, 76, 60, 0);
+            }
+            50% {
+                box-shadow: 0 12px 32px rgba(231, 76, 60, 0.2), inset 0 0 20px rgba(231, 76, 60, 0.05);
+            }
+        }
+
+        .problem-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 40px rgba(231, 76, 60, 0.3), inset 0 0 25px rgba(231, 76, 60, 0.1);
+            animation: slideUp 1s ease-out forwards, cardGlow 2s ease-in-out infinite;
+        }
+
+        .problem-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .problem-card h3 {
+            font-size: 1.3rem;
+            color: var(--navy);
+            margin-bottom: 0.75rem;
+        }
+
+        .problem-card p {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* Video Section */
+        .video-section {
+            padding: 5rem 2rem;
+            background: var(--white);
+        }
+
+        .video-container {
+            max-width: 900px;
+            margin: 0 auto;
+            animation: slideUp 1s ease-out;
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Benefits Section */
+        .benefits-section {
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, var(--navy) 0%, #1a3a52 100%);
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .benefits-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .benefits-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .benefits-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .benefits-header h2 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            align-items: stretch;
+        }
+
+        .benefit-item {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            padding: 2rem;
+            border-radius: 8px;
+            animation: slideUp 1s ease-out forwards, benefitGlow 4s ease-in-out infinite;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .benefit-item:nth-child(1) { animation-delay: 0.1s, 0s; }
+        .benefit-item:nth-child(2) { animation-delay: 0.2s, 0.3s; }
+        .benefit-item:nth-child(3) { animation-delay: 0.3s, 0.6s; }
+        .benefit-item:nth-child(4) { animation-delay: 0.4s, 0.9s; }
+        .benefit-item:nth-child(5) { animation-delay: 0.5s, 1.2s; }
+
+        @keyframes benefitGlow {
+            0%, 100% {
+                background: rgba(255, 255, 255, 0.08);
+                border-color: rgba(212, 175, 55, 0.3);
+                box-shadow: 0 0 20px rgba(212, 175, 55, 0), inset 0 0 15px rgba(212, 175, 55, 0);
+            }
+            50% {
+                background: rgba(255, 255, 255, 0.12);
+                border-color: rgba(212, 175, 55, 0.6);
+                box-shadow: 0 0 30px rgba(212, 175, 55, 0.3), inset 0 0 15px rgba(212, 175, 55, 0.1);
+            }
+        }
+
+        .benefit-item:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: var(--gold);
+            transform: translateY(-5px);
+            box-shadow: 0 0 40px rgba(212, 175, 55, 0.5), inset 0 0 20px rgba(212, 175, 55, 0.15);
+            animation: slideUp 1s ease-out forwards, benefitGlow 2s ease-in-out infinite;
+        }
+
+        .benefit-check {
+            color: var(--gold);
+            font-weight: 700;
+            font-size: 1.5rem;
+            margin-right: 0.5rem;
+        }
+
+        .benefit-text {
+            font-size: 1.05rem;
+            line-height: 1.6;
+        }
+
+        /* Authority Cards Glow */
+        .authority-card {
+            animation: authorityGlow 4s ease-in-out infinite;
+            transition: all 0.3s ease;
+        }
+
+        @keyframes authorityGlow {
+            0%, 100% {
+                box-shadow: 0 8px 24px rgba(212, 175, 55, 0.1);
+            }
+            50% {
+                box-shadow: 0 12px 36px rgba(212, 175, 55, 0.25);
+            }
+        }
+
+        .authority-card:hover {
+            animation: authorityGlow 2s ease-in-out infinite;
+            box-shadow: 0 16px 40px rgba(212, 175, 55, 0.4);
+        }
+
+        /* Know Your Mentor Section */
+        .mentor-section {
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, var(--navy) 0%, #1a3a52 100%);
+            color: var(--white);
+        }
+
+        .mentor-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .mentor-content h2 {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            color: var(--white);
+            font-weight: bold;
+            letter-spacing: -0.02em;
+        }
+
+        .mentor-bio {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2.5rem;
+        }
+
+        .mentor-credentials {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .mentor-credential {
+            padding: 1.5rem;
+            border: 2px solid var(--gold);
+            border-radius: 8px;
+            background: rgba(212, 175, 55, 0.05);
+            animation: mentorCardGlow 4s ease-in-out infinite;
+            transition: all 0.3s ease;
+        }
+
+        @keyframes mentorCardGlow {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(212, 175, 55, 0.2), inset 0 0 15px rgba(212, 175, 55, 0);
+            }
+            50% {
+                box-shadow: 0 0 30px rgba(212, 175, 55, 0.4), inset 0 0 15px rgba(212, 175, 55, 0.1);
+            }
+        }
+
+        .mentor-credential:hover {
+            background: rgba(212, 175, 55, 0.1);
+            box-shadow: 0 0 40px rgba(212, 175, 55, 0.6), inset 0 0 20px rgba(212, 175, 55, 0.15);
+            animation: mentorCardGlow 2s ease-in-out infinite;
+            transform: translateY(-4px);
+        }
+
+        .mentor-credential-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .mentor-credential-desc {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .mentor-image-container {
+            text-align: center;
+        }
+
+        .mentor-image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            animation: slideUp 1s ease-out;
+        }
+
+        @media (max-width: 768px) {
+            .mentor-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .mentor-content h2 {
+                font-size: 2rem;
+            }
+
+            .mentor-credentials {
+                gap: 1rem;
+            }
+        }
+
+        /* Who It's For */
+        .for-whom-section {
+            padding: 5rem 2rem;
+            background: var(--light-gray);
+        }
+
+        .for-whom-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .for-whom-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+            align-items: stretch;
+        }
+
+        .for-whom-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 8px;
+            border-top: 4px solid var(--gold);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            animation: slideUp 1s ease-out forwards, forWhomGlow 4s ease-in-out infinite;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .for-whom-card:nth-child(1) { animation-delay: 0.1s, 0s; }
+        .for-whom-card:nth-child(2) { animation-delay: 0.2s, 0.25s; }
+        .for-whom-card:nth-child(3) { animation-delay: 0.3s, 0.5s; }
+        .for-whom-card:nth-child(4) { animation-delay: 0.4s, 0.75s; }
+        .for-whom-card:nth-child(5) { animation-delay: 0.5s, 1s; }
+        .for-whom-card:nth-child(6) { animation-delay: 0.6s, 1.25s; }
+
+        @keyframes forWhomGlow {
+            0%, 100% {
+                box-shadow: 0 8px 24px rgba(212, 175, 55, 0.05), inset 0 0 20px rgba(212, 175, 55, 0);
+            }
+            50% {
+                box-shadow: 0 12px 32px rgba(212, 175, 55, 0.2), inset 0 0 20px rgba(212, 175, 55, 0.08);
+            }
+        }
+
+        .for-whom-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 40px rgba(212, 175, 55, 0.3), inset 0 0 25px rgba(212, 175, 55, 0.12);
+            animation: slideUp 1s ease-out forwards, forWhomGlow 2s ease-in-out infinite;
+        }
+
+        .for-whom-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .for-whom-card h3 {
+            font-size: 1.1rem;
+            color: var(--navy);
+            margin-bottom: 0.5rem;
+        }
+
+        .for-whom-card p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Gift Section */
+        .gift-section {
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, #2E5090 0%, var(--navy) 100%);
+            color: var(--white);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gift-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .gift-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .gift-section h2 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            color: var(--gold);
+            margin-bottom: 2rem;
+            animation: slideUp 1s ease-out;
+        }
+
+        .gift-cta {
+            display: inline-block;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 5rem 2rem;
+            background: var(--navy);
+            color: var(--white);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-section h2 {
+            font-size: clamp(2rem, 5vw, 2.5rem);
+            color: var(--white);
+            margin-bottom: 1rem;
+            animation: slideUp 1s ease-out;
+        }
+
+        .cta-section p {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2rem;
+            animation: slideUp 1s ease-out 0.1s both;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: slideUp 1s ease-out 0.2s both;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--charcoal);
+            color: var(--white);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            color: var(--gold);
+            margin-bottom: 1rem;
+            font-family: 'Sora', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .footer-section p, .footer-section a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-size: 0.9rem;
+            line-height: 1.8;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--gold);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+            padding-top: 2rem;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+
+            nav a {
+                margin: 0 0.5rem;
+                font-size: 0.8rem;
+            }
+
+            .hero {
+                padding: 1.5rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .hero-buttons .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .problems-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .for-whom-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .cta-buttons .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo-nav">
+            <img src="/brand_assets/Nav_LogoNoBG.svg" alt="Vedic Mathematics Demo" style="max-height: 40px; width: auto;">
+        </div>
+        <div style="display: flex; align-items: center; gap: 2rem;">
+            <a href="#benefits">Benefits</a>
+            <a href="#for-whom">Who It's For</a>
+            <a href="#contact">Contact</a>
+            <a href="https://wa.me/8619510953" class="nav-cta">Book Demo</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-badge">🎓 Veteran NextGen Academy - Class 10</div>
+                <h1>Solve Maths Error-Free<br>& <br>Score Extra Marks in CBSE Class 10 Boards</h1>
+                <div class="subtitle">Using the Power of Vedic Mathematics</div>
+                <p style="font-size: 1.05rem; font-weight: 500; margin-bottom: 1rem;">By Sravan Kumar (Ex-Indian Air Force)<br>Veteran NextGen Academy</p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn btn-primary">✨ Secure Your FREE Demo Seat</a>
+                    <a href="#video" class="btn btn-secondary">Watch Demo Video</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problems Section -->
+    <section class="problems-section">
+        <div class="section-header">
+            <h2>😓 If Your Child Understands Concepts But Still Loses Marks…</h2>
+            <p>👉 The problem is NOT concepts or steps</p>
+        </div>
+
+        <div style="max-width: 1000px; margin: 0 auto; padding: 0 2rem; text-align: center; margin-bottom: 3rem;">
+            <h3 style="font-size: 1.5rem; color: var(--navy); margin-bottom: 2rem;">It's:</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem;">
+                <div style="padding: 1.5rem; background: #ffebee; border-left: 4px solid #E74C3C; border-radius: 4px;">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">❌</div>
+                    <p style="font-size: 1.05rem; font-weight: 600; color: var(--charcoal);">Calculation mistakes</p>
+                </div>
+                <div style="padding: 1.5rem; background: #fff3e0; border-left: 4px solid #F39C12; border-radius: 4px;">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">❌</div>
+                    <p style="font-size: 1.05rem; font-weight: 600; color: var(--charcoal);">Slow solving speed</p>
+                </div>
+                <div style="padding: 1.5rem; background: #ede7f6; border-left: 4px solid #9C27B0; border-radius: 4px;">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">❌</div>
+                    <p style="font-size: 1.05rem; font-weight: 600; color: var(--charcoal);">Confusion under pressure</p>
+                </div>
+            </div>
+        </div>
+
+        <div style="max-width: 900px; margin: 0 auto; padding: 2rem; background: linear-gradient(135deg, #fff3cd 0%, #ffe69c 100%); border-left: 4px solid #ffc107; border-radius: 8px; margin-bottom: 2rem;">
+            <h3 style="font-size: 1.3rem; color: var(--charcoal); margin-bottom: 1rem;">⚠️ Reality Most Parents Ignore</h3>
+            <p style="font-size: 1rem; color: var(--charcoal); line-height: 1.8; margin-bottom: 1rem;">Even brilliant students lose <strong>5–10 marks</strong> in every exam because of:</p>
+            <ul style="list-style: none; padding: 0; text-align: left; max-width: 500px; margin: 0 auto;">
+                <li style="padding: 0.5rem 0; color: var(--charcoal);"><strong>→</strong> Silly calculation errors</li>
+                <li style="padding: 0.5rem 0; color: var(--charcoal);"><strong>→</strong> Slow multiplication/division</li>
+                <li style="padding: 0.5rem 0; color: var(--charcoal);"><strong>→</strong> Panic during long calculations</li>
+                <li style="padding: 0.5rem 0; color: var(--charcoal);"><strong>→</strong> Lack of smart shortcuts</li>
+                <li style="padding: 0.5rem 0; color: var(--charcoal);"><strong>→</strong> Right steps but wrong final answers</li>
+            </ul>
+            <p style="font-size: 1.1rem; font-weight: 600; color: var(--navy); margin-top: 1.5rem;"></p>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section style="padding: 5rem 2rem; background: var(--white);">
+        <div class="section-header">
+            <h2>💡 What If Your Child Could…</h2>
+        </div>
+        <div style="max-width: 900px; margin: 0 auto;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem;">
+                <div style="padding: 2rem; background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); border-radius: 8px; text-align: center;">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">🚀</div>
+                    <p style="font-size: 1.05rem; font-weight: 600; color: var(--navy);">Solve the same questions 2–3× faster</p>
+                </div>
+                <div style="padding: 2rem; background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%); border-radius: 8px; text-align: center;">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">✨</div>
+                    <p style="font-size: 1.05rem; font-weight: 600; color: var(--navy);">Make almost zero mistakes</p>
+                </div>
+                <div style="padding: 2rem; background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); border-radius: 8px; text-align: center;">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">⏱</div>
+                    <p style="font-size: 1.05rem; font-weight: 600; color: var(--navy);">Finish exams before time</p>
+                </div>
+                <div style="padding: 2rem; background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%); border-radius: 8px; text-align: center;">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">😊</div>
+                    <p style="font-size: 1.05rem; font-weight: 600; color: var(--navy);">Feel confident instead of stressed</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vedic Maths Core Hook -->
+    <section style="padding: 5rem 2rem; background: linear-gradient(135deg, #1a3a52 0%, var(--navy) 100%); color: var(--white); text-align: center; position: relative; overflow: hidden;">
+        <div style="position: absolute; top: -50%; right: -10%; width: 500px; height: 500px; background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%); border-radius: 50%;"></div>
+        <div style="position: relative; z-index: 2; max-width: 900px; margin: 0 auto;">
+            <h2 style="font-size: clamp(2rem, 5vw, 2.8rem); margin-bottom: 1.5rem; color: var(--gold);">⚡ Discover the Power of Vedic Mathematics</h2>
+            <p style="font-size: 1.1rem; margin-bottom: 2.5rem; line-height: 1.8;">A powerful system that helps students:</p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem;">
+                <div style="padding: 1.5rem;">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">🚀</div>
+                    <p style="font-size: 1.05rem; font-weight: 500;">Solve calculations faster</p>
+                </div>
+                <div style="padding: 1.5rem;">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">🧠</div>
+                    <p style="font-size: 1.05rem; font-weight: 500;">Reduce errors drastically</p>
+                </div>
+                <div style="padding: 1.5rem;">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">⏱</div>
+                    <p style="font-size: 1.05rem; font-weight: 500;">Save time in exams</p>
+                </div>
+                <div style="padding: 1.5rem;">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">💯</div>
+                    <p style="font-size: 1.05rem; font-weight: 500;">Score higher marks</p>
+                </div>
+            </div>
+            <p style="font-size: 1.1rem; font-weight: 600; margin-top: 2rem; color: var(--gold);">👉 This is the hidden advantage toppers use</p>
+        </div>
+    </section>
+
+    <!-- Video Section -->
+    <section class="video-section" id="video">
+        <div class="section-header">
+            <h2>See the Magic Happen</h2>
+            <p>Watch how Vedic Mathematics transforms calculation speed in real-time</p>
+        </div>
+        <div class="video-container">
+            <div class="video-wrapper">
+                <div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1175182445?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="VedicMaths"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
+            </div>
+        </div>
+    </section>
+
+    <!-- What You'll Learn Section -->
+    <section class="benefits-section" id="benefits">
+        <div class="benefits-container">
+            <div class="benefits-header">
+                <h2>🎓 WHAT YOU'LL LEARN (Demo Session)</h2>
+                <p style="font-size: 1.1rem; color: rgba(255, 255, 255, 0.9);">In this special session, your child will learn:</p>
+            </div>
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <div><span class="benefit-check">✔</span><span class="benefit-text">Solve calculations 2–3× faster</span></div>
+                </div>
+                <div class="benefit-item">
+                    <div><span class="benefit-check">✔</span><span class="benefit-text">Avoid silly mistakes completely</span></div>
+                </div>
+                <div class="benefit-item">
+                    <div><span class="benefit-check">✔</span><span class="benefit-text">Finish maths paper before time</span></div>
+                </div>
+                <div class="benefit-item">
+                    <div><span class="benefit-check">✔</span><span class="benefit-text">Feel confident in exams</span></div>
+                </div>
+                <div class="benefit-item">
+                    <div><span class="benefit-check">✔</span><span class="benefit-text">Add extra marks in maths exam</span></div>
+                </div>
+            </div>
+
+            <div style="margin-top: 4rem; padding: 2rem; background: rgba(212, 175, 55, 0.1); border-left: 4px solid var(--gold); border-radius: 8px;">
+                <h3 style="font-size: 1.2rem; margin-bottom: 1rem;">These Techniques Help Students:</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem;">
+                    <div>✓ Solve sums quickly</div>
+                    <div>✓ Reduce calculation errors</div>
+                    <div>✓ Improve speed in exams</div>
+                    <div>✓ Score higher in Boards & Olympiads</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Know Your Mentor Section -->
+    <section class="mentor-section">
+        <div class="mentor-container">
+            <div class="mentor-content">
+                <h2>Know your Mentor</h2>
+                <p class="mentor-bio">
+                    I'm Sravan Kumar, with 20 years in the Indian Air Force where discipline and precision are non-negotiable. I bring that same rigor to teaching. Over the past 2 years at VETERAN NextGen Academy, my Class 10 students achieved 85% improvement in math and science, with multiple centum scorers—without compromising fundamentals. Now, I teach the one method that changed everything: Vedic Maths—ancient techniques that truly work.
+                </p>
+                <div class="mentor-credentials">
+                    <div class="mentor-credential">
+                        <div class="mentor-credential-title">Ex-IAF Officer</div>
+                        <div class="mentor-credential-desc">20 years of military discipline</div>
+                    </div>
+                    <div class="mentor-credential">
+                        <div class="mentor-credential-title">Class 10 Specialist</div>
+                        <div class="mentor-credential-desc">Board exam expert</div>
+                    </div>
+                    <div class="mentor-credential">
+                        <div class="mentor-credential-title">Results-Driven</div>
+                        <div class="mentor-credential-desc">85% score improvement proven</div>
+                    </div>
+                    <div class="mentor-credential">
+                        <div class="mentor-credential-title">100+ Centum Achievers</div>
+                        <div class="mentor-credential-desc">Students scoring 100%</div>
+                    </div>
+                </div>
+            </div>
+            <div class="mentor-image-container">
+                <img src="/Sravan_noBG.svg" alt="Sravan Kumar - Vedic Mathematics Mentor">
+            </div>
+        </div>
+    </section>
+
+    <!-- Who It's For Section -->
+    <section class="for-whom-section" id="for-whom">
+        <div class="for-whom-container">
+            <div class="section-header">
+                <h2>👨‍👩‍👧 Who This Is For</h2>
+                <p>This session is perfect if your child matches any of these</p>
+            </div>
+            <div class="for-whom-grid">
+                <div class="for-whom-card">
+                    <div class="for-whom-icon">📚</div>
+                    <h3>Class 10 CBSE Students</h3>
+                    <p>Preparing for board exams with focus on mathematical excellence</p>
+                </div>
+                <div class="for-whom-card">
+                    <div class="for-whom-icon">💡</div>
+                    <h3>Knows Concepts</h3>
+                    <p>Understands theory but makes calculation mistakes</p>
+                </div>
+                <div class="for-whom-card">
+                    <div class="for-whom-icon">⏱️</div>
+                    <h3>Slow in Calculation</h3>
+                    <p>Takes too long to solve sums, leaving questions unanswered</p>
+                </div>
+                <div class="for-whom-card">
+                    <div class="for-whom-icon">😟</div>
+                    <h3>Gets Nervous in Exams</h3>
+                    <p>Anxiety and time pressure cause careless errors</p>
+                </div>
+                <div class="for-whom-card">
+                    <div class="for-whom-icon">✏️</div>
+                    <h3>Right Steps, Wrong Answers</h3>
+                    <p>Methodology is correct but final answer is wrong</p>
+                </div>
+                <div class="for-whom-card">
+                    <div class="for-whom-icon">🏆</div>
+                    <h3>Boards & Olympiad Prep</h3>
+                    <p>Aiming for top scores and competition success</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Authority Section -->
+    <section style="padding: 5rem 2rem; background: var(--white);">
+        <div class="section-header">
+            <h2>🎖️ Why Parents Trust Veteran NextGen Academy</h2>
+        </div>
+        <div style="max-width: 1000px; margin: 0 auto;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 2rem; align-items: stretch;">
+                <div class="authority-card" style="padding: 2rem; background: linear-gradient(135deg, var(--navy) 0%, var(--accent) 100%); color: var(--white); border-radius: 8px; animation: slideUp 1s ease-out, authorityGlow 4s ease-in-out infinite;">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">🎖️</div>
+                    <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem; color: var(--gold);">Led by Sravan Kumar</h3>
+                    <p>Ex-Indian Air Force officer with 20+ years of discipline & excellence</p>
+                </div>
+                <div class="authority-card" style="padding: 2rem; background: linear-gradient(135deg, var(--navy) 0%, var(--accent) 100%); color: var(--white); border-radius: 8px; animation: slideUp 1s ease-out 0.1s both, authorityGlow 4s ease-in-out infinite 0.2s;">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">⚙️</div>
+                    <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem; color: var(--gold);">Proven Method</h3>
+                    <p>Focus on discipline + consistency + results. Proven track record of 85% score improvement</p>
+                </div>
+                <div class="authority-card" style="padding: 2rem; background: linear-gradient(135deg, var(--navy) 0%, var(--accent) 100%); color: var(--white); border-radius: 8px; animation: slideUp 1s ease-out 0.2s both, authorityGlow 4s ease-in-out infinite 0.4s;">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">🌐</div>
+                    <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem; color: var(--gold);">Flexible Learning</h3>
+                    <p> Online for flexibility. Small batches for personal attention</p>
+                </div>
+                <div class="authority-card" style="padding: 2rem; background: linear-gradient(135deg, var(--navy) 0%, var(--accent) 100%); color: var(--white); border-radius: 8px; animation: slideUp 1s ease-out 0.3s both, authorityGlow 4s ease-in-out infinite 0.6s;">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">💪</div>
+                    <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem; color: var(--gold);">Pressure Training</h3>
+                    <p>We train students to perform under pressure. Military discipline meets academics</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Risk Reversal + Scarcity Section -->
+    <section style="padding: 5rem 2rem; background: linear-gradient(135deg, #f0f4f8 0%, var(--light-gray) 100%);">
+        <div style="max-width: 900px; margin: 0 auto;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;">
+                <div style="padding: 2rem; background: var(--white); border-left: 4px solid #4CAF50; border-radius: 8px; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);">
+                    <h3 style="font-size: 1.3rem; color: var(--navy); margin-bottom: 1rem;">🛡️ Risk Reversal</h3>
+                    <p style="font-size: 1rem; line-height: 1.8; color: #555;">Attend the demo class — experience the difference.</p>
+                </div>
+                <div style="padding: 2rem; background: var(--white); border-left: 4px solid #FF9800; border-radius: 8px; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);">
+                    <h3 style="font-size: 1.3rem; color: var(--navy); margin-bottom: 1rem;">⏳ Limited Seats</h3>
+                    <p style="font-size: 1rem; line-height: 1.8; color: #555;"><strong>Limited seats per Session</strong>  </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Registration Form Section -->
+    <!-- Registration Form Section -->
+    <section class="cta-section" id="contact" style="padding: 5rem 2rem; background: linear-gradient(135deg, var(--navy) 0%, #1a3a52 100%); color: var(--white); position: relative; overflow: hidden;">
+        <div style="position: absolute; top: -50%; right: -10%; width: 500px; height: 500px; background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%); border-radius: 50%;"></div>
+        <div style="position: absolute; bottom: -30%; left: -5%; width: 400px; height: 400px; background: radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, transparent 70%); border-radius: 50%;"></div>
+
+        <div style="max-width: 600px; margin: 0 auto; position: relative; z-index: 2;">
+            <h2 style="font-size: clamp(2rem, 5vw, 2.5rem); text-align: center; margin-bottom: 1rem; color: var(--white);">Secure Your FREE Demo Seat</h2>
+            <p style="text-align: center; font-size: 1.1rem; margin-bottom: 2.5rem; color: rgba(255, 255, 255, 0.9);">Join the next batch of Class 10 students mastering Vedic Maths</p>
+
+            <form id="demoForm" style="background: rgba(15, 37, 66, 0.6); border: 2px solid var(--gold); border-radius: 8px; padding: 2.5rem; backdrop-filter: blur(10px);">
+
+                <div style="margin-bottom: 1.5rem;">
+                    <label style="display: block; font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--white);">Your Full Name *</label>
+                    <input type="text" name="name" id="name" placeholder="Enter your name" required style="width: 100%; padding: 0.75rem 1rem; background: rgba(255, 255, 255, 0.1); border: 1px solid var(--gold); color: var(--white); border-radius: 4px; font-size: 1rem; font-family: 'Sora', sans-serif;" />
+                </div>
+
+                <div style="margin-bottom: 1.5rem;">
+                    <label style="display: block; font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--white);">Student's Grade/Class *</label>
+                    <select name="grade" id="grade" required style="width: 100%; padding: 0.75rem 1rem; background: rgba(255, 255, 255, 0.1); border: 1px solid var(--gold); color: var(--white); border-radius: 4px; font-size: 1rem; font-family: 'Sora', sans-serif;">
+                        <option value="" style="color: var(--charcoal);">Select Grade</option>
+                        <option value="Class 9" style="color: var(--charcoal);">Class 9</option>
+                        <option value="Class 10" style="color: var(--charcoal);">Class 10</option>
+                        <option value="Class 11" style="color: var(--charcoal);">Class 11</option>
+                        <option value="Class 12" style="color: var(--charcoal);">Class 12</option>
+                    </select>
+                </div>
+
+                <div style="margin-bottom: 1.5rem;">
+                    <label style="display: block; font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--white);">Parent's WhatsApp Number *</label>
+                    <input type="tel" name="phone" id="phone" placeholder="10-digit mobile number" pattern="[0-9]{10}" required style="width: 100%; padding: 0.75rem 1rem; background: rgba(255, 255, 255, 0.1); border: 1px solid var(--gold); color: var(--white); border-radius: 4px; font-size: 1rem; font-family: 'Sora', sans-serif;" />
+                </div>
+
+                <div style="margin-bottom: 1.5rem;">
+                    <label style="display: block; font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--white);">School Name (Optional)</label>
+                    <input type="text" name="school" id="school" placeholder="Your school name" style="width: 100%; padding: 0.75rem 1rem; background: rgba(255, 255, 255, 0.1); border: 1px solid var(--gold); color: var(--white); border-radius: 4px; font-size: 1rem; font-family: 'Sora', sans-serif;" />
+                </div>
+
+                <div style="margin-bottom: 2rem; display: flex; align-items: center; gap: 0.5rem;">
+                    <input type="checkbox" id="consent" name="consent" required style="width: 18px; height: 18px; cursor: pointer;" />
+                    <label for="consent" style="color: rgba(255, 255, 255, 0.9); font-size: 0.95rem; cursor: pointer;">I agree to receive updates about demo sessions and Vedic Maths classes</label>
+                </div>
+
+                <button type="submit" style="width: 100%; padding: 1rem; background: var(--gold); color: var(--charcoal); border: none; border-radius: 4px; font-size: 1.05rem; font-weight: 700; cursor: pointer; transition: all 0.3s ease;">
+                    Confirm My FREE Seat →
+                </button>
+
+                <div id="formMessage" style="margin-top: 1rem; text-align: center; font-size: 0.95rem; display: none;"></div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Form Submission Script -->
+    <script>
+        const demoForm = document.getElementById('demoForm');
+        const formMessage = document.getElementById('formMessage');
+
+        demoForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            // Get form data
+            const formData = {
+                name: document.getElementById('name').value,
+                grade: document.getElementById('grade').value,
+                phone: document.getElementById('phone').value,
+                school: document.getElementById('school').value || 'N/A',
+                timestamp: new Date().toLocaleString('en-IN'),
+                consent: document.getElementById('consent').checked
+            };
+
+            // Show loading state
+            const submitBtn = demoForm.querySelector('button[type="submit"]');
+            const originalBtnText = submitBtn.textContent;
+            submitBtn.textContent = '⏳ Saving your seat...';
+            submitBtn.disabled = true;
+
+            try {
+                // Replace with your Google Apps Script URL
+                const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxUxrUWke69m3VQ-ddr9Y-0ulpZNZv1hEBmiJU4rtS_0lhp67KjlyESvkJAEkF_XQAz/exec'; // Update this
+
+                // Send to Google Sheets
+                const response = await fetch(SCRIPT_URL, {
+                    method: 'POST',
+                    body: JSON.stringify(formData),
+                    mode: 'no-cors'
+                });
+
+                // WhatsApp group link
+                const whatsappURL = 'https://chat.whatsapp.com/E0k5uch7SQw9DHZRALWert';
+
+                // Show success message
+                formMessage.style.display = 'block';
+                formMessage.style.color = '#4CAF50';
+                formMessage.innerHTML = '✅ Seat confirmed! Opening WhatsApp to connect with Sravan...';
+
+                // Redirect to WhatsApp after 1 second
+                setTimeout(() => {
+                    window.open(whatsappURL, '_blank');
+                }, 1000);
+
+                // Reset form
+                setTimeout(() => {
+                    demoForm.reset();
+                    formMessage.style.display = 'none';
+                    submitBtn.textContent = originalBtnText;
+                    submitBtn.disabled = false;
+                }, 2000);
+
+            } catch (error) {
+                console.error('Error:', error);
+                formMessage.style.display = 'block';
+                formMessage.style.color = '#FF9800';
+                formMessage.innerHTML = '⚠️ Error saving data. Please try again or contact via WhatsApp.';
+
+                submitBtn.textContent = originalBtnText;
+                submitBtn.disabled = false;
+            }
+        });
+
+        // Phone number validation
+        document.getElementById('phone').addEventListener('input', function(e) {
+            this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10);
+        });
+
+        // Form input styling on focus
+        const inputs = document.querySelectorAll('#demoForm input, #demoForm select');
+        inputs.forEach(input => {
+            input.addEventListener('focus', function() {
+                this.style.borderColor = '#D4AF37';
+                this.style.boxShadow = '0 0 10px rgba(212, 175, 55, 0.3)';
+            });
+            input.addEventListener('blur', function() {
+                this.style.boxShadow = 'none';
+            });
+        });
+    </script>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Vedic Mathematics Demo</h3>
+                <p>By Sravan Kumar (Ex-Indian Air Force). Veteran NextGen Academy presents special demo sessions to help Class 10 students master faster calculations, eliminate errors, and score higher in board exams.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Program Details</h3>
+                <p><strong>For:</strong> Class 10 (CBSE & State)</p>
+                <p><strong>Focus:</strong> Vedic Mathematics, Speed, Accuracy</p>
+                <p><strong>Mode:</strong> Online </p>
+                <p><strong>Location:</strong> Hyderabad</p>
+            </div>
+            <div class="footer-section">
+                <h3>Connect & Book</h3>
+                <p><a href="https://wa.me/8619510953">WhatsApp: 8619510953</a></p>
+                <p><a href="tel:8619510953">Call: 8619510953</a></p>
+                <p><a href="https://instagram.com/sksravanshyam">Instagram: @sksravanshyam</a></p>
+                <p><a href="https://youtube.com/@sravankumar10x">YouTube Channel</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Veteran NextGen Academy | Sravan Kumar - Master Educator | Flight Towards Excellence</p>
+        </div>
+    </footer>
+</body>
+</html>

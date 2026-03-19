@@ -1,0 +1,1386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FREE Vedic Maths Demo Session | Master Faster Calculations in 90 Minutes</title>
+    <link rel="icon" type="image/svg+xml" href="/brand_assets/Favicon_Logo.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Sora:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --gold: #D4AF37;
+            --gold-dark: #B8860B;
+            --navy: #0F2542;
+            --charcoal: #1a1a1a;
+            --white: #FFFFFF;
+            --light-gray: #F5F5F5;
+            --accent: #2E5090;
+        }
+
+        body {
+            font-family: 'Sora', sans-serif;
+            color: var(--charcoal);
+            background: linear-gradient(135deg, var(--navy) 0%, #1a3a52 100%);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 900;
+            letter-spacing: -0.03em;
+        }
+
+        /* Vedic geometric background pattern */
+        .vedic-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.03;
+            z-index: 0;
+            pointer-events: none;
+            background-image:
+                radial-gradient(circle at 20% 50%, var(--gold) 1px, transparent 1px),
+                radial-gradient(circle at 80% 80%, var(--gold) 1px, transparent 1px),
+                radial-gradient(circle at 50% 20%, var(--gold) 1px, transparent 1px);
+            background-size: 100px 100px, 120px 120px, 150px 150px;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 50;
+            background: rgba(15, 37, 66, 0.98);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 30px rgba(212, 175, 55, 0.1);
+        }
+
+        .logo-nav {
+            height: 40px;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-nav img {
+            height: 100%;
+            width: auto;
+        }
+
+        .nav-cta {
+            background: var(--gold);
+            color: var(--navy);
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .nav-cta:hover {
+            background: var(--gold-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
+        }
+
+        /* Main content wrapper */
+        main {
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            padding: 8rem 2rem 4rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(15, 37, 66, 0.95) 0%, rgba(46, 80, 144, 0.1) 100%),
+                        url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0l8.66 5v10l-8.66 5-8.66-5v-10z' fill='%23D4AF37' opacity='0.05'/%3E%3C/svg%3E");
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            width: 100%;
+        }
+
+        .hero-left h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--white) 0%, var(--gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-left p {
+            font-size: 1.125rem;
+            color: #d0d0d0;
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+
+        .proof-chips {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .proof-chip {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: rgba(212, 175, 55, 0.1);
+            border-left: 3px solid var(--gold);
+            padding: 1rem;
+            border-radius: 6px;
+            font-weight: 600;
+            color: var(--gold);
+            font-size: 0.95rem;
+        }
+
+        .proof-chip::before {
+            content: "✦";
+            font-size: 1.2rem;
+            color: var(--gold);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: var(--gold);
+            color: var(--navy);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1rem;
+            text-decoration: none;
+            border: 2px solid var(--gold);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-block;
+            animation: glowBtnVedic 3s ease-in-out infinite;
+            box-sizing: border-box;
+        }
+
+        @keyframes glowBtnVedic {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(212, 175, 55, 0.6), 0 0 40px rgba(212, 175, 55, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 30px rgba(212, 175, 55, 0.8), 0 0 60px rgba(212, 175, 55, 0.5);
+            }
+        }
+
+        .btn-primary:hover {
+            background: var(--gold-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 0 40px rgba(212, 175, 55, 1), 0 0 80px rgba(212, 175, 55, 0.6);
+            animation: glowBtnVedic 1.5s ease-in-out infinite;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--gold);
+            padding: 1rem 2rem;
+            border: 2px solid var(--gold);
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1rem;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            animation: glowSecondaryVedic 3s ease-in-out infinite;
+            box-sizing: border-box;
+        }
+
+        @keyframes glowSecondaryVedic {
+            0%, 100% {
+                box-shadow: 0 0 15px rgba(212, 175, 55, 0.4), 0 0 30px rgba(212, 175, 55, 0.2);
+            }
+            50% {
+                box-shadow: 0 0 25px rgba(212, 175, 55, 0.6), 0 0 50px rgba(212, 175, 55, 0.3);
+            }
+        }
+
+        .btn-secondary:hover {
+            background: var(--gold);
+            color: var(--navy);
+            transform: translateY(-3px);
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.8), 0 0 60px rgba(212, 175, 55, 0.4);
+            animation: glowSecondaryVedic 1.5s ease-in-out infinite;
+        }
+
+        .hero-right {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-right img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            filter: drop-shadow(0 20px 40px rgba(212, 175, 55, 0.2));
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .video-container {
+            position: relative;
+            display: block;
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            border-radius: 12px;
+            overflow: hidden;
+            filter: drop-shadow(0 20px 40px rgba(212, 175, 55, 0.2));
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .video-container iframe {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 16 / 9;
+            display: block;
+            border: none;
+            border-radius: 12px;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Problem Section */
+        .problem-section {
+            padding: 6rem 2rem;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .problem-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .problem-content h2 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--white);
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .problem-card {
+            background: rgba(212, 175, 55, 0.08);
+            border-left: 4px solid var(--gold);
+            padding: 2rem;
+            border-radius: 8px;
+            color: #d0d0d0;
+            line-height: 1.8;
+        }
+
+        .problem-card strong {
+            color: var(--gold);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Solution Section */
+        .solution-section {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, rgba(46, 80, 144, 0.15) 0%, transparent 100%);
+        }
+
+        .solution-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .solution-content h2 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 2rem;
+            color: var(--white);
+        }
+
+        .solution-highlight {
+            background: rgba(212, 175, 55, 0.2);
+            border: 2px solid var(--gold);
+            padding: 2.5rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+        }
+
+        .solution-highlight h3 {
+            font-size: 2rem;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+        }
+
+        .solution-highlight p {
+            font-size: 1.125rem;
+            color: #d0d0d0;
+            line-height: 1.8;
+        }
+
+        .benefits-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+        }
+
+        .benefit {
+            background: rgba(212, 175, 55, 0.1);
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .benefit strong {
+            color: var(--gold);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .benefit p {
+            font-size: 0.95rem;
+            color: #d0d0d0;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            padding: 6rem 2rem;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .stats-grid {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+
+        .stat-card {
+            text-align: center;
+            background: rgba(212, 175, 55, 0.1);
+            padding: 2.5rem;
+            border-radius: 12px;
+            border-top: 3px solid var(--gold);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+            background: rgba(212, 175, 55, 0.15);
+            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.2);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--gold);
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: #d0d0d0;
+            font-weight: 600;
+        }
+
+        /* Value Stack Section */
+        .value-section {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, rgba(46, 80, 144, 0.2) 0%, rgba(15, 37, 66, 0.95) 100%);
+        }
+
+        .value-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .value-content h2 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--white);
+        }
+
+        .value-items {
+            display: grid;
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .value-item {
+            background: rgba(212, 175, 55, 0.08);
+            border-left: 4px solid var(--gold);
+            padding: 1.75rem;
+            border-radius: 8px;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .value-item-text h4 {
+            color: var(--white);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .value-item-text p {
+            color: #a0a0a0;
+            font-size: 0.95rem;
+        }
+
+        .value-price {
+            text-align: right;
+            white-space: nowrap;
+        }
+
+        .value-strikethrough {
+            color: #a0a0a0;
+            text-decoration: line-through;
+            font-size: 0.95rem;
+        }
+
+        .value-free {
+            color: var(--gold);
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .value-summary {
+            background: rgba(212, 175, 55, 0.15);
+            border: 2px solid var(--gold);
+            padding: 2.5rem;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .value-summary h3 {
+            font-size: 1.5rem;
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+
+        .value-total {
+            font-size: 2rem;
+            color: var(--gold);
+            font-weight: 900;
+            margin-bottom: 1rem;
+        }
+
+        .value-cost {
+            font-size: 1.2rem;
+            color: var(--white);
+        }
+
+        .value-cost strong {
+            color: var(--gold);
+            font-size: 2.5rem;
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 6rem 2rem;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .about-content {
+            max-width: 900px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-left h2 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 2rem;
+            color: var(--white);
+        }
+
+        .about-left p {
+            color: #d0d0d0;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        .about-badges {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .badge {
+            background: rgba(212, 175, 55, 0.15);
+            border: 1px solid var(--gold);
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .badge strong {
+            color: var(--gold);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .badge p {
+            font-size: 0.9rem;
+            color: #a0a0a0;
+        }
+
+        .about-right {
+            display: flex;
+            justify-content: center;
+        }
+
+        .about-right img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 20px 50px rgba(212, 175, 55, 0.2);
+        }
+
+        /* Urgency Section */
+        .urgency-section {
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, rgba(46, 80, 144, 0.2) 100%);
+            border-top: 2px solid var(--gold);
+            border-bottom: 2px solid var(--gold);
+            text-align: center;
+        }
+
+        .urgency-content h3 {
+            font-size: 2rem;
+            color: var(--white);
+            margin-bottom: 1.5rem;
+        }
+
+        .seats-bar {
+            background: rgba(255, 255, 255, 0.1);
+            height: 12px;
+            border-radius: 6px;
+            max-width: 400px;
+            margin: 0 auto 1.5rem;
+            overflow: hidden;
+        }
+
+        .seats-filled {
+            background: linear-gradient(90deg, var(--gold), var(--gold-dark));
+            height: 100%;
+            width: 70%;
+            border-radius: 6px;
+            transition: width 0.5s ease;
+        }
+
+        .seats-text {
+            color: var(--gold);
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        /* Registration Form */
+        .form-section {
+            padding: 6rem 2rem;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .form-wrapper {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-wrapper h2 {
+            font-size: clamp(2rem, 5vw, 2.5rem);
+            text-align: center;
+            margin-bottom: 1rem;
+            color: var(--white);
+        }
+
+        .form-subtitle {
+            text-align: center;
+            color: #a0a0a0;
+            margin-bottom: 2.5rem;
+            font-size: 1.05rem;
+        }
+
+        .form-card {
+            background: rgba(212, 175, 55, 0.12);
+            border: 2px solid var(--gold);
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(212, 175, 55, 0.15);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.75rem;
+            color: var(--white);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid var(--gold);
+            background: rgba(15, 37, 66, 0.8);
+            color: var(--white);
+            border-radius: 6px;
+            font-family: 'Sora', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input::placeholder,
+        .form-group select::placeholder {
+            color: #a0a0a0;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            background: rgba(15, 37, 66, 0.95);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.3);
+            border-color: var(--gold-dark);
+        }
+
+        .form-group select {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23D4AF37' d='M0 0l6 8 6-8z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            padding-right: 2.5rem;
+        }
+
+        .form-group.checkbox {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 2rem;
+        }
+
+        .form-group.checkbox input {
+            width: auto;
+            cursor: pointer;
+        }
+
+        .form-group.checkbox label {
+            margin-bottom: 0;
+            cursor: pointer;
+        }
+
+        .btn-submit {
+            width: 100%;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            color: var(--navy);
+            padding: 1.25rem;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1.05rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.5);
+        }
+
+        .btn-submit:active {
+            transform: translateY(-1px);
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, rgba(46, 80, 144, 0.1) 0%, transparent 100%);
+        }
+
+        .faq-wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq-wrapper h2 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--white);
+        }
+
+        .faq-items {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .faq-item {
+            background: rgba(212, 175, 55, 0.08);
+            border-left: 4px solid var(--gold);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            background: rgba(212, 175, 55, 0.1);
+            padding: 1.75rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: var(--white);
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: rgba(212, 175, 55, 0.15);
+        }
+
+        .faq-toggle {
+            font-size: 1.5rem;
+            color: var(--gold);
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 0 1.75rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            color: #d0d0d0;
+            line-height: 1.8;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            padding: 1.75rem;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(15, 37, 66, 0.8);
+            padding: 4rem 2rem 2rem;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-col h4 {
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .footer-col p,
+        .footer-col a {
+            color: #a0a0a0;
+            font-size: 0.95rem;
+            margin-bottom: 0.75rem;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            line-height: 1.8;
+        }
+
+        .footer-col a:hover {
+            color: var(--gold);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(212, 175, 55, 0.15);
+            border-radius: 50%;
+            border: 1px solid var(--gold);
+            text-decoration: none;
+            color: var(--gold);
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--gold);
+            color: var(--navy);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+            color: #a0a0a0;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .hero-right {
+                order: -1;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .form-card {
+                padding: 2rem;
+            }
+
+            .about-badges {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="vedic-pattern"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo-nav">
+            <img src="/brand_assets/Nav_LogoNoBG.svg" alt="VETERAN NextGen Academy">
+        </div>
+        <a href="#register" class="nav-cta">Register FREE Demo →</a>
+    </nav>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <div class="hero-left">
+                    <h1>Master Vedic Maths in 90 Minutes—or It's Absolutely Free</h1>
+                    <p>For Class 10 students who want faster calculations, higher board scores, and zero dependency on calculators.</p>
+
+                    <div class="proof-chips">
+                        <div class="proof-chip">85% Average Score Improvement</div>
+                        <div class="proof-chip">100+ Centum Achievers</div>
+                        <div class="proof-chip">Ex-IAF Officer | 20 Years Military Precision</div>
+                    </div>
+
+                    <div class="cta-buttons">
+                        <a href="#register" class="btn-primary">Secure Your FREE Demo Seat</a>
+                        <a href="https://wa.me/918619510953" class="btn-secondary" target="_blank">Ask Questions via WhatsApp</a>
+                    </div>
+                </div>
+
+                <div class="hero-right">
+                    <div class="video-container">
+                        <div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1175182445?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="VedicMaths"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Problem Section -->
+        <section class="problem-section">
+            <div class="problem-content">
+                <h2>Still Spending 3 Minutes on One Multiplication?</h2>
+
+                <div class="problem-grid">
+                    <div class="problem-card">
+                        <strong>⚠️ Board Exam Pressure</strong>
+                        Time runs out. Calculations take forever. You know the concept but can't finish the paper.
+                    </div>
+                    <div class="problem-card">
+                        <strong>⚠️ Slow Arithmetic</strong>
+                        Multiplication, division, squaring—every calculation is a bottleneck slowing you down.
+                    </div>
+                    <div class="problem-card">
+                        <strong>⚠️ Calculator Dependency</strong>
+                        You can't solve problems mentally. Zero confidence in calculations without a calculator.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Solution Section -->
+        <section class="solution-section">
+            <div class="solution-content">
+                <h2>The Solution: Vedic Mathematics</h2>
+
+                <div class="solution-highlight">
+                    <h3>5,000-Year-Old Wisdom Taught in 90 Minutes</h3>
+                    <p>Vedic Maths isn't just faster—it rewires HOW you calculate. Ancient Indian mathematicians cracked codes that modern calculators can't beat.</p>
+                </div>
+
+                <div class="benefits-list">
+                    <div class="benefit">
+                        <strong>⚡ 10x Faster</strong>
+                        <p>Multiply any numbers 50x quicker than traditional methods</p>
+                    </div>
+                    <div class="benefit">
+                        <strong>🧠 Mental Math</strong>
+                        <p>Calculate in your head, no paper, no calculator needed</p>
+                    </div>
+                    <div class="benefit">
+                        <strong>🎯 Exam Ready</strong>
+                        <p>Save 30+ minutes per exam. Finish early. Score higher.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="stats-section">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">85%</div>
+                    <div class="stat-label">Average Score Improvement in Math & Science</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">100+</div>
+                    <div class="stat-label">Students Achieved Centum Results</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">20</div>
+                    <div class="stat-label">Years of Military Precision & Discipline</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Value Stack Section -->
+        <section class="value-section">
+            <div class="value-content">
+                <h2>What You Get in This FREE 90-Minute Demo Session</h2>
+
+                <div class="value-items">
+                    <div class="value-item">
+                        <div class="value-item-text">
+                            <h4>🔑 Vedic Multiplication Secrets</h4>
+                            <p>Master 2-digit, 3-digit, and cross-multiplication techniques used by Indian mathematicians</p>
+                        </div>
+                        <div class="value-price">
+                            <div class="value-strikethrough">₹499</div>
+                            <div class="value-free">FREE</div>
+                        </div>
+                    </div>
+
+                    <div class="value-item">
+                        <div class="value-item-text">
+                            <h4>⚡ Speed Calculation Techniques</h4>
+                            <p>Quick division, squaring, and number manipulation tricks that blow calculators away</p>
+                        </div>
+                        <div class="value-price">
+                            <div class="value-strikethrough">₹499</div>
+                            <div class="value-free">FREE</div>
+                        </div>
+                    </div>
+
+                    <div class="value-item">
+                        <div class="value-item-text">
+                            <h4>📋 Board Exam Shortcut Sheet PDF</h4>
+                            <p>Downloadable cheat sheet with all key formulas and techniques to keep in your pocket</p>
+                        </div>
+                        <div class="value-price">
+                            <div class="value-strikethrough">₹299</div>
+                            <div class="value-free">FREE</div>
+                        </div>
+                    </div>
+
+                    <div class="value-item">
+                        <div class="value-item-text">
+                            <h4>💬 Live Q&A with Sravan Sir</h4>
+                            <p>Ask questions directly. Get personalized answers. Real-time doubt clearing</p>
+                        </div>
+                        <div class="value-price">
+                            <div class="value-strikethrough">₹999</div>
+                            <div class="value-free">FREE</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="value-summary">
+                    <h3>Total Value</h3>
+                    <div class="value-total">₹2,296</div>
+                    <div class="value-cost">Your Cost: <strong>₹0</strong></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="about-section">
+            <div class="about-content">
+                <div class="about-left">
+                    <h2>Know your Mentor</h2>
+                    <p>I'm <strong>Sravan Kumar</strong>, with 20 years in the Indian Air Force where discipline and precision are non-negotiable. I bring that same rigor to teaching.
+
+Over the past 2 years at VETERAN NextGen Academy, my Class 10 students achieved 85% improvement in math and science, with multiple centum scorers—without compromising fundamentals.
+
+Now, I teach the one method that changed everything: Vedic Maths—ancient techniques that truly work.</p>
+
+                    <div class="about-badges">
+                        <div class="badge">
+                            <strong>Ex-IAF Officer</strong>
+                            <p>20 years of military discipline</p>
+                        </div>
+                        <div class="badge">
+                            <strong>Class 10 Specialist</strong>
+                            <p>Board exam expert</p>
+                        </div>
+                        <div class="badge">
+                            <strong>Results-Driven</strong>
+                            <p>85% score improvement proven</p>
+                        </div>
+                        <div class="badge">
+                            <strong>100+ Centum Achievers</strong>
+                            <p>Students scoring 100%</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="about-right">
+                    <img src="/Sravan_noBG.svg" alt="Sravan Kumar - Vedic Mathematics Mentor">
+                </div>
+            </div>
+        </section>
+
+        <!-- Urgency Section -->
+        <section class="urgency-section">
+            <div class="urgency-content">
+                <h3>⏰ Only 30 Seats Available</h3>
+                <div class="seats-bar">
+                    <div class="seats-filled"></div>
+                </div>
+                <p class="seats-text">21 seats already claimed | 9 remaining</p>
+            </div>
+        </section>
+
+        <!-- Registration Form Section -->
+        <section class="form-section" id="register">
+            <div class="form-wrapper">
+                <h2>Secure Your FREE Demo Seat</h2>
+                <p class="form-subtitle">Join the next batch of Class 10 students mastering Vedic Maths</p>
+
+                <div class="form-card">
+                    <form id="demoForm">
+                        <div class="form-group">
+                            <label for="name">Your Full Name *</label>
+                            <input type="text" id="name" name="name" placeholder="e.g., Rohan Kumar" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="grade">Student's Grade/Class *</label>
+                            <select id="grade" name="grade" required>
+                                <option value="">Select your class</option>
+                                <option value="Class 10">Class 10</option>
+                                <option value="Class 9">Class 9 (Prepare ahead)</option>
+                                <option value="Class 11">Class 11 (Strengthen basics)</option>
+                                <option value="Class 12">Class 12 (Catch-up)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Parent's WhatsApp Number *</label>
+                            <input type="tel" id="phone" name="phone" placeholder="10-digit number (e.g., 9876543210)" pattern="[0-9]{10}" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="school">School Name (Optional)</label>
+                            <input type="text" id="school" name="school" placeholder="Your school name">
+                        </div>
+
+                        <div class="form-group checkbox">
+                            <input type="checkbox" id="agree" name="agree" required>
+                            <label for="agree">I agree to receive updates about demo sessions and Vedic Maths classes</label>
+                        </div>
+
+                        <button type="submit" class="btn-submit">Confirm My FREE Seat →</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="faq-section">
+            <div class="faq-wrapper">
+                <h2>Frequently Asked Questions</h2>
+
+                <div class="faq-items">
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Is this really FREE? What's the catch?</span>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            It's genuinely free. No credit card required. No hidden charges. I'm launching Vedic Maths classes, and this demo is to show you exactly what you'll learn. It's a real, full session—not a teaser. If you love it and want to continue, we'll talk about paid classes. No pressure.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Who is this for? Can my child join if they're not in Class 10?</span>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            It's designed for Class 10 students preparing for board exams. But Class 9 students can prepare ahead, and Class 11-12 students can strengthen their math foundations. If you're unsure, reach out—we'll guide you.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>What if my child misses the live session?</span>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            We'll send you a recording link. Your child can watch anytime. Plus, you'll get the shortcut sheet PDF immediately. But live is better—there's real-time Q&A.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Will Vedic Maths actually help with board exams?</span>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            100%. My students save 30+ minutes per exam because calculations are instant. That time goes to solving more questions and scoring higher. Plus, mental math boosts confidence—no calculator anxiety.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>How do I confirm my seat after registering?</span>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            After you submit the form, you'll be redirected to WhatsApp (or can message me directly). I'll send you the demo date, time, and session link. It's that simple—no complex portals or confirmations needed.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h4>VETERAN NextGen Academy</h4>
+                    <p>Empowering Class 10 students with military precision, academic excellence, and proven results.</p>
+                    <p><strong>📱 Contact:</strong><br>WhatsApp: <a href="https://wa.me/918619510953">+91 86195 10953</a></p>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <a href="#register">Register for Demo</a>
+                    <a href="https://wa.me/918619510953">Ask a Question</a>
+                    <a href="#faq">FAQ</a>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Follow Us</h4>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/sksravanshyam" target="_blank" title="Instagram">f</a>
+                        <a href="https://www.youtube.com/@sravankumar10x" target="_blank" title="YouTube">▶</a>
+                        <a href="https://www.facebook.com/share/18KPu9YQ93/" target="_blank" title="Facebook">f</a>
+                        <a href="https://www.linkedin.com/in/naragonisravankumar" target="_blank" title="LinkedIn">in</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Veteran NextGen Academy | Sravan Kumar - Master Educator | Flight Towards Excellence</p>
+            </div>
+        </footer>
+    </main>
+
+    <script>
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Form submission with Google Sheets + WhatsApp integration
+        document.getElementById('demoForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const submitButton = this.querySelector('button[type="submit"]');
+            const originalText = submitButton.textContent;
+            submitButton.style.opacity = '0.7';
+            submitButton.textContent = '⏳ Saving your seat...';
+            submitButton.disabled = true;
+
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const grade = document.getElementById('grade').value;
+            const school = document.getElementById('school').value || 'Not provided';
+            const consent = document.getElementById('consent').checked;
+            const timestamp = new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' });
+
+            // Google Apps Script deployment URL - Replace with your deployed script URL
+            const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxUxrUWke69m3VQ-ddr9Y-0ulpZNZv1hEBmiJU4rtS_0lhp67KjlyESvkJAEkF_XQAz/exec';
+
+            try {
+                // Send data to Google Sheets via Google Apps Script
+                const formData = new FormData();
+                formData.append('name', name);
+                formData.append('grade', grade);
+                formData.append('phone', phone);
+                formData.append('school', school);
+                formData.append('consent', consent ? 'Yes' : 'No');
+                formData.append('timestamp', timestamp);
+
+                await fetch(SCRIPT_URL, {
+                    method: 'POST',
+                    body: formData,
+                    mode: 'no-cors'
+                });
+
+                // Update button to success state
+                submitButton.style.backgroundColor = '#22c55e';
+                submitButton.style.opacity = '1';
+                submitButton.textContent = '✅ Seat confirmed!';
+
+                // Generate WhatsApp message
+                const message = `Hi Sravan Sir! 👋\n\nI want to register for the FREE Vedic Maths Demo Session.\n\n📝 Details:\n• Name: ${name}\n• Class: ${grade}\n• School: ${school}\n• WhatsApp: +91${phone}\n\nPlease confirm my seat! 🎯`;
+
+                // Wait 1.5 seconds, then reset and open WhatsApp
+                setTimeout(() => {
+                    submitButton.style.backgroundColor = '#D4AF37';
+                    submitButton.style.opacity = '1';
+                    submitButton.textContent = originalText;
+                    submitButton.disabled = false;
+                    document.getElementById('demoForm').reset();
+
+                    const whatsappUrl = 'https://chat.whatsapp.com/E0k5uch7SQw9DHZRALWert';
+                    window.open(whatsappUrl, '_blank');
+                }, 1500);
+            } catch (error) {
+                console.error('Error sending data:', error);
+                // Fallback: Open WhatsApp directly
+                submitButton.style.backgroundColor = '#D4AF37';
+                submitButton.textContent = originalText;
+                submitButton.disabled = false;
+
+                const whatsappUrl = 'https://chat.whatsapp.com/E0k5uch7SQw9DHZRALWert';
+                window.open(whatsappUrl, '_blank');
+            }
+        });
+
+        // FAQ accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', function() {
+                const faqItem = this.parentElement;
+                faqItem.classList.toggle('active');
+            });
+        });
+
+        // Animate counters on scroll
+        const observerOptions = {
+            threshold: 0.5
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !entry.target.classList.contains('animated')) {
+                    entry.target.classList.add('animated');
+                    const statNumber = entry.target.querySelector('.stat-number');
+                    if (statNumber) {
+                        const finalValue = statNumber.textContent;
+                        const isPercentage = finalValue.includes('%');
+                        const isCentum = finalValue.includes('+');
+                        const numericValue = parseInt(finalValue);
+
+                        let currentValue = 0;
+                        const increment = Math.ceil(numericValue / 30);
+
+                        const counter = setInterval(() => {
+                            currentValue += increment;
+                            if (currentValue >= numericValue) {
+                                currentValue = numericValue;
+                                clearInterval(counter);
+                            }
+                            statNumber.textContent = currentValue + (isPercentage ? '%' : isCentum ? '+' : '');
+                        }, 30);
+                    }
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.stat-card').forEach(card => {
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
