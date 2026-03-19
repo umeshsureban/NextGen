@@ -1,4 +1,4 @@
-# Seravan Kumar - Professional Landing Page
+# Sravan Kumar - Professional Landing Page
 
 A modern, responsive landing page for Seravan Kumar, featuring teaching methodology, results, testimonials, and contact information.
 
