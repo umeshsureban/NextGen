@@ -68,6 +68,34 @@
             width: auto;
         }
 
+        .logo-text {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--gold);
+            margin-left: 1rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            animation: navGlow 3s ease-in-out infinite;
+            text-shadow: 0 0 8px rgba(212, 175, 55, 0.5);
+        }
+
+        @keyframes navGlow {
+            0%, 100% {
+                color: var(--gold);
+                text-shadow: 0 0 8px rgba(212, 175, 55, 0.5), 0 0 15px rgba(212, 175, 55, 0.2);
+            }
+            50% {
+                color: #FFD700;
+                text-shadow: 0 0 12px rgba(212, 175, 55, 0.8), 0 0 25px rgba(212, 175, 55, 0.4);
+            }
+        }
+
+        .logo-nav {
+            display: flex;
+            align-items: center;
+        }
+
         nav a {
             color: var(--white);
             text-decoration: none;
@@ -177,7 +205,7 @@
             text-align: center;
             animation: slideUp 1s ease-out;
         }
-
+                                                                                                                                                                                                                                                        
         .hero-badge {
             display: inline-block;
             background: rgba(212, 175, 55, 0.15);
@@ -185,7 +213,7 @@
             color: var(--gold);
             padding: 0.5rem 1rem;
             border-radius: 20px;
-            font-size: 0.85rem;
+            font-size: 1.5rem;
             font-weight: 600;
             margin-bottom: 1.5rem;
             animation: slideUp 1s ease-out 0.1s both;
@@ -205,8 +233,20 @@
             font-size: 1.4rem;
             color: var(--gold);
             margin-bottom: 1.5rem;
-            animation: slideUp 1s ease-out 0.25s both;
+            animation: slideUp 1s ease-out 0.25s both, subtitleGlow 3s ease-in-out infinite 0.25s;
             font-weight: 600;
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.6);
+        }
+
+        @keyframes subtitleGlow {
+            0%, 100% {
+                text-shadow: 0 0 10px rgba(212, 175, 55, 0.6), 0 0 20px rgba(212, 175, 55, 0.3);
+                color: var(--gold);
+            }
+            50% {
+                text-shadow: 0 0 20px rgba(212, 175, 55, 0.9), 0 0 40px rgba(212, 175, 55, 0.6), 0 0 60px rgba(212, 175, 55, 0.3);
+                color: #FFD700;
+            }
         }
 
         .hero p {
@@ -822,6 +862,12 @@
                 padding: 1.5rem;
             }
 
+            .hero img {
+                width: clamp(80px, 25vw, 250px) !important;
+                right: -5% !important;
+                opacity: 0.4 !important;
+            }
+
             .hero h1 {
                 font-size: 2rem;
             }
@@ -861,6 +907,12 @@
                 max-width: 300px;
             }
         }
+
+        @media (max-width: 480px) {
+            .hero img {
+                display: none !important;
+            }
+        }
     </style>
 </head>
 <body>
@@ -868,19 +920,21 @@
     <nav>
         <div class="logo-nav">
             <img src="/brand_assets/Nav_LogoNoBG.svg" alt="Vedic Mathematics Demo" style="max-height: 40px; width: auto;">
+            <span class="logo-text">Veteran NextGen Academy</span>
         </div>
         <div style="display: flex; align-items: center; gap: 2rem;">
-            <a href="#benefits">Benefits</a>
+        <!--    <a href="#benefits">Benefits</a> -->
             <a href="#contact" class="nav-cta">Book Demo</a>
         </div>
     </nav>
 
     <!-- Hero Section -->
     <section class="hero">
+        <img src="/brand_assets/Hero_logo.svg" alt="Hero Logo Right" style="position: absolute; top: 50%; right: 5%; transform: translateY(-50%); width: clamp(150px, 35vw, 400px); height: auto; opacity: 1; z-index: 1; pointer-events: none;">
         <div class="hero-container">
             <div class="hero-content">
-                <div class="hero-badge">🎓 Veteran NextGen Academy - Class 10</div>
-                <h1>Solve Maths Error-Free<br>& <br>Score Extra Marks in CBSE Class 10 Boards</h1>
+                <div class="hero-badge">🎓 Veteran NextGen Academy</div>
+                <h1>Solve Maths Error-Free<br>& <br>Score Extra Marks in Class 10 Boards</h1>
                 <div class="subtitle">Using the Power of Vedic Mathematics</div>
                 <p style="font-size: 1.05rem; font-weight: 500; margin-bottom: 1rem;">By Sravan Kumar (Ex-Indian Air Force)<br>Veteran NextGen Academy</p>
                 <div class="hero-buttons">
@@ -891,42 +945,271 @@
         </div>
     </section>
 
-    <!-- Problems Section -->
-    <section class="problems-section">
-        <div class="section-header">
-            <h2>😓 If Your Child Understands Concepts But Still Loses Marks…</h2>
-            <p>👉 The problem is NOT concepts or steps</p>
+    <!-- Problems Section - Modernized -->
+    <style>
+        .modern-problems-section {
+            padding: 6rem 2rem;
+            background: linear-gradient(180deg, var(--light-gray) 0%, #f0f4f8 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .modern-problems-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .modern-problems-header h2 {
+            font-size: clamp(2rem, 5vw, 2.8rem);
+            color: var(--navy);
+            margin-bottom: 0.5rem;
+            font-weight: 800;
+        }
+
+        .modern-problems-header p {
+            font-size: 1.15rem;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .problems-grid-modern {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1100px;
+            margin: 0 auto 4rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .problem-card-modern {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 16px;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            animation: slideUp 0.8s ease-out forwards, cardFloat 4s ease-in-out infinite;
+            opacity: 0;
+        }
+
+        .problem-card-modern:nth-child(1) { animation-delay: 0.1s, 0s; }
+        .problem-card-modern:nth-child(2) { animation-delay: 0.2s, 0.2s; }
+        .problem-card-modern:nth-child(3) { animation-delay: 0.3s, 0.4s; }
+
+        @keyframes cardFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .problem-card-modern::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            opacity: 0;
+            transition: all 0.6s ease;
+        }
+
+        .problem-card-modern:nth-child(1)::before { background: radial-gradient(circle, rgba(231, 76, 60, 0.1) 0%, transparent 70%); }
+        .problem-card-modern:nth-child(2)::before { background: radial-gradient(circle, rgba(243, 156, 18, 0.1) 0%, transparent 70%); }
+        .problem-card-modern:nth-child(3)::before { background: radial-gradient(circle, rgba(155, 89, 182, 0.1) 0%, transparent 70%); }
+
+        .problem-card-modern:hover::before {
+            opacity: 1;
+            transform: translate(30px, 30px);
+        }
+
+        .problem-card-modern:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .problem-icon-modern {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            animation: iconPulse 2s ease-in-out infinite;
+        }
+
+        .problem-card-modern:nth-child(1) .problem-icon-modern { animation-delay: 0s; }
+        .problem-card-modern:nth-child(2) .problem-icon-modern { animation-delay: 0.3s; }
+        .problem-card-modern:nth-child(3) .problem-icon-modern { animation-delay: 0.6s; }
+
+        @keyframes iconPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .problem-card-modern h3 {
+            font-size: 1.3rem;
+            color: var(--navy);
+            margin-bottom: 0.75rem;
+            font-weight: 700;
+            position: relative;
+            z-index: 2;
+        }
+
+        .problem-card-modern p {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            position: relative;
+            z-index: 2;
+        }
+
+        .reality-section-modern {
+            max-width: 950px;
+            margin: 0 auto;
+            padding: 3rem;
+            background: linear-gradient(135deg, var(--navy) 0%, #1a3a52 100%);
+            border-radius: 16px;
+            color: white;
+            position: relative;
+            z-index: 2;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            animation: slideUp 0.8s ease-out 0.4s both;
+        }
+
+        .reality-section-modern::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 25s ease-in-out infinite;
+        }
+
+        .reality-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .reality-section-modern h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            color: var(--gold);
+        }
+
+        .reality-section-modern p {
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            color: rgba(255, 255, 255, 0.95);
+        }
+
+        .reality-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 auto;
+            max-width: 600px;
+        }
+
+        .reality-list li {
+            padding: 0.8rem 0;
+            padding-left: 2rem;
+            color: rgba(255, 255, 255, 0.9);
+            position: relative;
+            font-size: 1rem;
+            line-height: 1.6;
+            animation: slideIn 0.6s ease-out forwards;
+            opacity: 0;
+        }
+
+        .reality-list li:nth-child(1) { animation-delay: 0.5s; }
+        .reality-list li:nth-child(2) { animation-delay: 0.6s; }
+        .reality-list li:nth-child(3) { animation-delay: 0.7s; }
+        .reality-list li:nth-child(4) { animation-delay: 0.8s; }
+        .reality-list li:nth-child(5) { animation-delay: 0.9s; }
+
+        .reality-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .emphasis-text {
+            color: var(--gold);
+            font-weight: 700;
+        }
+
+        @media (max-width: 768px) {
+            .modern-problems-section {
+                padding: 4rem 1.5rem;
+            }
+
+            .reality-section-modern {
+                padding: 2rem;
+            }
+
+            .problem-card-modern {
+                padding: 2rem;
+            }
+        }
+    </style>
+
+    <section class="modern-problems-section">
+        <div class="modern-problems-header">
+            <h2>😓 The Real Reason Brilliant Students Lose Marks</h2>
+            <p>It's NOT about understanding concepts or following steps</p>
         </div>
 
-        <div style="max-width: 1000px; margin: 0 auto; padding: 0 2rem; text-align: center; margin-bottom: 3rem;">
-            <h3 style="font-size: 1.5rem; color: var(--navy); margin-bottom: 2rem;">It's:</h3>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem;">
-                <div style="padding: 1.5rem; background: #ffebee; border-left: 4px solid #E74C3C; border-radius: 4px;">
-                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">❌</div>
-                    <p style="font-size: 1.05rem; font-weight: 600; color: var(--charcoal);">Calculation mistakes</p>
-                </div>
-                <div style="padding: 1.5rem; background: #fff3e0; border-left: 4px solid #F39C12; border-radius: 4px;">
-                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">❌</div>
-                    <p style="font-size: 1.05rem; font-weight: 600; color: var(--charcoal);">Slow solving speed</p>
-                </div>
-                <div style="padding: 1.5rem; background: #ede7f6; border-left: 4px solid #9C27B0; border-radius: 4px;">
-                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">❌</div>
-                    <p style="font-size: 1.05rem; font-weight: 600; color: var(--charcoal);">Confusion under pressure</p>
-                </div>
+        <div class="problems-grid-modern">
+            <div class="problem-card-modern">
+                <div class="problem-icon-modern">📊</div>
+                <h3>Calculation Mistakes</h3>
+                <p>Careless arithmetic errors that lead to wrong final answers, even when the approach is perfect</p>
+            </div>
+            <div class="problem-card-modern">
+                <div class="problem-icon-modern">⏱️</div>
+                <h3>Slow Solving Speed</h3>
+                <p>Takes too long on calculations, leaving insufficient time for other questions in exams</p>
+            </div>
+            <div class="problem-card-modern">
+                <div class="problem-icon-modern">😰</div>
+                <h3>Exam Pressure</h3>
+                <p>Anxiety and time pressure cause panic, leading to more mistakes and blank mind moments</p>
             </div>
         </div>
 
-        <div style="max-width: 900px; margin: 0 auto; padding: 2rem; background: linear-gradient(135deg, #fff3cd 0%, #ffe69c 100%); border-left: 4px solid #ffc107; border-radius: 8px; margin-bottom: 2rem;">
-            <h3 style="font-size: 1.3rem; color: var(--charcoal); margin-bottom: 1rem;">⚠️ Reality Most Parents Ignore</h3>
-            <p style="font-size: 1rem; color: var(--charcoal); line-height: 1.8; margin-bottom: 1rem;">Even brilliant students lose <strong>5–10 marks</strong> in every exam because of:</p>
-            <ul style="list-style: none; padding: 0; text-align: left; max-width: 500px; margin: 0 auto;">
-                <li style="padding: 0.5rem 0; color: var(--charcoal);"><strong>→</strong> Silly calculation errors</li>
-                <li style="padding: 0.5rem 0; color: var(--charcoal);"><strong>→</strong> Slow multiplication/division</li>
-                <li style="padding: 0.5rem 0; color: var(--charcoal);"><strong>→</strong> Panic during long calculations</li>
-                <li style="padding: 0.5rem 0; color: var(--charcoal);"><strong>→</strong> Lack of smart shortcuts</li>
-                <li style="padding: 0.5rem 0; color: var(--charcoal);"><strong>→</strong> Right steps but wrong final answers</li>
-            </ul>
-            <p style="font-size: 1.1rem; font-weight: 600; color: var(--navy); margin-top: 1.5rem;"></p>
+        <div class="reality-section-modern">
+            <div class="reality-content">
+                <h3>⚡ The Hard Truth Every Parent Needs to Know</h3>
+                <p>Even <span class="emphasis-text">brilliant students lose 5–10 marks</span> in every exam because of these silent killers:</p>
+                <ul class="reality-list">
+                    <li>Silly calculation errors that go unnoticed</li>
+                    <li>Slow multiplication and division taking precious exam time</li>
+                    <li>Panic during long, complex calculations</li>
+                    <li>Missing smart shortcuts that toppers know</li>
+                    <li>Right method but wrong final answer due to calculation slips</li>
+                </ul>
+            </div>
         </div>
     </section>
 
@@ -936,21 +1219,21 @@
             <h2>💡 What If Your Child Could…</h2>
         </div>
         <div style="max-width: 900px; margin: 0 auto;">
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem;">
-                <div style="padding: 2rem; background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); border-radius: 8px; text-align: center;">
-                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">🚀</div>
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem;">
+                <div style="padding: 2rem; background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); border-radius: 12px; text-align: center; cursor: pointer; transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1); transform-style: preserve-3d;" onmouseover="this.style.transform='rotateX(8deg) rotateY(8deg) scale(1.05)'; this.style.boxShadow='0 30px 60px rgba(0,0,0,0.2)';" onmouseout="this.style.transform='rotateX(0deg) rotateY(0deg) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.08)';">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem; animation: iconBounce 2s ease-in-out infinite 0s;">🚀</div>
                     <p style="font-size: 1.05rem; font-weight: 600; color: var(--navy);">Solve the same questions 2–3× faster</p>
                 </div>
-                <div style="padding: 2rem; background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%); border-radius: 8px; text-align: center;">
-                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">✨</div>
+                <div style="padding: 2rem; background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%); border-radius: 12px; text-align: center; cursor: pointer; transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1); transform-style: preserve-3d;" onmouseover="this.style.transform='rotateX(8deg) rotateY(8deg) scale(1.05)'; this.style.boxShadow='0 30px 60px rgba(0,0,0,0.2)';" onmouseout="this.style.transform='rotateX(0deg) rotateY(0deg) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.08)';">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem; animation: iconBounce 2s ease-in-out infinite 0.15s;">✨</div>
                     <p style="font-size: 1.05rem; font-weight: 600; color: var(--navy);">Make almost zero mistakes</p>
                 </div>
-                <div style="padding: 2rem; background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); border-radius: 8px; text-align: center;">
-                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">⏱</div>
+                <div style="padding: 2rem; background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); border-radius: 12px; text-align: center; cursor: pointer; transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1); transform-style: preserve-3d;" onmouseover="this.style.transform='rotateX(8deg) rotateY(8deg) scale(1.05)'; this.style.boxShadow='0 30px 60px rgba(0,0,0,0.2)';" onmouseout="this.style.transform='rotateX(0deg) rotateY(0deg) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.08)';">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem; animation: iconBounce 2s ease-in-out infinite 0.3s;">⏱️</div>
                     <p style="font-size: 1.05rem; font-weight: 600; color: var(--navy);">Finish exams before time</p>
                 </div>
-                <div style="padding: 2rem; background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%); border-radius: 8px; text-align: center;">
-                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">😊</div>
+                <div style="padding: 2rem; background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%); border-radius: 12px; text-align: center; cursor: pointer; transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1); transform-style: preserve-3d;" onmouseover="this.style.transform='rotateX(8deg) rotateY(8deg) scale(1.05)'; this.style.boxShadow='0 30px 60px rgba(0,0,0,0.2)';" onmouseout="this.style.transform='rotateX(0deg) rotateY(0deg) scale(1)'; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.08)';">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem; animation: iconBounce 2s ease-in-out infinite 0.45s;">😊</div>
                     <p style="font-size: 1.05rem; font-weight: 600; color: var(--navy);">Feel confident instead of stressed</p>
                 </div>
             </div>
@@ -961,7 +1244,7 @@
     <section style="padding: 5rem 2rem; background: linear-gradient(135deg, #1a3a52 0%, var(--navy) 100%); color: var(--white); text-align: center; position: relative; overflow: hidden;">
         <div style="position: absolute; top: -50%; right: -10%; width: 500px; height: 500px; background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%); border-radius: 50%;"></div>
         <div style="position: relative; z-index: 2; max-width: 900px; margin: 0 auto;">
-            <h2 style="font-size: clamp(2rem, 5vw, 2.8rem); margin-bottom: 1.5rem; color: var(--gold);">⚡ Discover the Power of Vedic Mathematics</h2>
+            <h2 style="font-size: clamp(2rem, 5vw, 2.8rem); margin-bottom: 1.5rem; color: var(--gold); animation: subtitleGlow 3s ease-in-out infinite; text-shadow: 0 0 10px rgba(212, 175, 55, 0.6);">⚡ Discover the Power of Vedic Mathematics</h2>
             <p style="font-size: 1.1rem; margin-bottom: 2.5rem; line-height: 1.8;">A powerful system that helps students:</p>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem;">
                 <div style="padding: 1.5rem;">
@@ -1288,6 +1571,165 @@
         });
     </script>
 
+    <!-- 3D Floating Social Icons -->
+    <style>
+        .floating-social-container {
+            position: fixed;
+            left: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 40;
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+        }
+
+        .social-icon-wrapper {
+            perspective: 1200px;
+            width: 70px;
+            height: 70px;
+        }
+
+        .social-icon {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            text-decoration: none;
+            position: relative;
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+            transform-style: preserve-3d;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            animation: float-vertical 3s ease-in-out infinite;
+        }
+
+        .social-icon::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            transition: all 0.6s ease;
+        }
+
+        /* WhatsApp */
+        .social-icon.whatsapp::before {
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            box-shadow: 0 0 20px rgba(37, 211, 102, 0.5), inset 0 0 20px rgba(255, 255, 255, 0.1);
+        }
+
+        .social-icon.whatsapp:hover::before {
+            box-shadow: 0 0 40px rgba(37, 211, 102, 0.8), inset 0 0 30px rgba(255, 255, 255, 0.2);
+        }
+
+        /* Instagram */
+        .social-icon.instagram::before {
+            background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            box-shadow: 0 0 20px rgba(224, 122, 95, 0.5), inset 0 0 20px rgba(255, 255, 255, 0.1);
+        }
+
+        .social-icon.instagram:hover::before {
+            box-shadow: 0 0 40px rgba(224, 122, 95, 0.8), inset 0 0 30px rgba(255, 255, 255, 0.2);
+        }
+
+        /* YouTube */
+        .social-icon.youtube::before {
+            background: linear-gradient(135deg, #FF0000 0%, #CC0000 100%);
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.5), inset 0 0 20px rgba(255, 255, 255, 0.1);
+        }
+
+        .social-icon.youtube:hover::before {
+            box-shadow: 0 0 40px rgba(255, 0, 0, 0.8), inset 0 0 30px rgba(255, 255, 255, 0.2);
+        }
+
+        .social-icon:hover {
+            transform: rotateY(360deg) scale(1.15);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+        }
+
+        .social-icon span {
+            position: relative;
+            z-index: 2;
+            transition: all 0.6s ease;
+        }
+
+        .social-icon:hover span {
+            transform: scale(1.2) rotateZ(10deg);
+        }
+
+        /* Staggered float animation */
+        .social-icon-wrapper:nth-child(1) .social-icon {
+            animation-delay: 0s;
+        }
+
+        .social-icon-wrapper:nth-child(2) .social-icon {
+            animation-delay: 0.3s;
+        }
+
+        .social-icon-wrapper:nth-child(3) .social-icon {
+            animation-delay: 0.6s;
+        }
+
+        @keyframes float-vertical {
+            0%, 100% {
+                transform: translateY(0px) rotateZ(0deg);
+            }
+            50% {
+                transform: translateY(-15px) rotateZ(5deg);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .floating-social-container {
+                left: 1rem;
+                gap: 2rem;
+            }
+
+            .social-icon-wrapper {
+                width: 60px;
+                height: 60px;
+            }
+
+            .social-icon {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+
+    <div class="floating-social-container">
+        <div class="social-icon-wrapper">
+            <a href="https://wa.me/8619510953" target="_blank" rel="noopener noreferrer" class="social-icon whatsapp">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 0C5.372 0 0 5.373 0 12c0 2.11.629 4.179 1.817 5.961L0 24l6.312-1.769C9.851 23.323 11.886 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.994c-1.03 0-3.01-.429-5.434-1.515l-3.852 1.082.972-3.588C2.567 16.28 1.94 14.179 1.94 12.02c0-5.49 4.486-9.944 9.996-9.944 5.508 0 10.002 4.454 10.002 9.944-.002 5.49-4.495 9.974-9.938 9.974z"/>
+                    <path d="M18.036 17.266c-.266-.135-1.572-.777-1.818-.865-.246-.088-.424-.132-.602.133-.178.265-.691.866-.846 1.044-.155.177-.311.199-.577.066-.266-.134-1.128-.416-2.145-1.325-.794-.708-1.33-1.582-1.486-1.847-.156-.265-.016-.408.117-.54.12-.12.266-.31.399-.466.134-.156.178-.267.267-.446.089-.179.045-.333-.021-.466-.067-.134-.602-1.449-.824-1.983-.217-.52-.435-.45-.601-.458-.156-.007-.334-.008-.512-.008-.178 0-.467.066-.712.331-.245.266-.934.914-.934 2.227s.955 2.586 1.088 2.765c.133.178 1.883 2.873 4.565 4.034.638.273 1.135.439 1.52.563.64.203 1.222.175 1.682.106.514-.078 1.579-.646 1.801-1.27.223-.624.223-1.159.156-1.27-.067-.112-.245-.178-.511-.311z"/>
+                </svg>
+                
+            </a>
+        </div>
+        <div class="social-icon-wrapper">
+            <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer" class="social-icon instagram">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.266.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                </svg>
+            </a>
+        </div>
+        <div class="social-icon-wrapper">
+            <a href="https://youtube.com/" target="_blank" rel="noopener noreferrer" class="social-icon youtube">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                </svg>
+            </a>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer>
         <div class="footer-content">
@@ -1300,7 +1742,7 @@
                 <p><strong>For:</strong> Class 10 (CBSE & State)</p>
                 <p><strong>Focus:</strong> Vedic Mathematics, Speed, Accuracy</p>
                 <p><strong>Mode:</strong> Online </p>
-                <p><strong>Location:</strong> Hyderabad</p>
+                <!-- <p><strong>Location:</strong> Hyderabad</p> -->
             </div>
             <div class="footer-section">
                 <h3>Connect & Book</h3>
