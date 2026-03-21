@@ -863,9 +863,9 @@
             }
 
             .hero img {
-                width: clamp(80px, 25vw, 250px) !important;
-                right: -5% !important;
-                opacity: 0.4 !important;
+                width: clamp(60px, 20vw, 180px) !important;
+                right: -8% !important;
+                opacity: 0.3 !important;
             }
 
             .hero h1 {
@@ -909,6 +909,14 @@
             }
         }
 
+        @media (max-width: 1024px) {
+            .hero img {
+                width: clamp(90px, 22vw, 220px) !important;
+                right: 2% !important;
+                opacity: 0.35 !important;
+            }
+        }
+
         @media (max-width: 480px) {
             .hero img {
                 display: none !important;
@@ -936,13 +944,16 @@
 
     <!-- Hero Section -->
     <section class="hero">
-        <img src="/brand_assets/Hero_logo.svg" alt="Hero Logo Right" style="position: absolute; top: 50%; right: 5%; transform: translateY(-50%); width: clamp(150px, 35vw, 400px); height: auto; opacity: 1; z-index: 1; pointer-events: none;">
+        <img src="/brand_assets/Hero_logo.svg" alt="Hero Logo Right" style="position: absolute; top: 50%; right: 5%; transform: translateY(-50%); width: clamp(112.5px, 26.25vw, 300px); height: auto; opacity: 1; z-index: 1; pointer-events: none;">
         <div class="hero-container">
             <div class="hero-content">
-                <div class="hero-badge">Veteran NextGen Academy</div>
+                <!-- <div class="hero-badge">Veteran NextGen Academy</div> -->
+                <div class="hero-badge">Using Power of Vedic Mathematics</div>
                 <h1>Solve Maths Error-Free<br>& <br>Score Extra Marks in Class 10 Boards</h1>
-                <div class="subtitle">Using the Power of Vedic Mathematics</div>
-                <p style="font-size: 1.05rem; font-weight: 500; margin-bottom: 1rem;">By Sravan Kumar (Ex-Indian Air Force)<br>Veteran NextGen Academy</p>
+                <!-- <div class="subtitle">Using the Power of Vedic Mathematics</div> -->
+                <p style="font-size: 1.05rem; font-weight: 500; margin-bottom: 1rem;">By Sravan Kumar (Ex-Indian Air Force)</p>
+                <!-- <p style="font-size: 1.05rem; font-weight: 500; margin-bottom: 1rem;">By Sravan Kumar (Ex-Indian Air Force)<br>Veteran NextGen Academy</p> -->
+
                 <div class="hero-buttons">
                     <a href="#contact" class="btn btn-primary">✨ Secure Your FREE Demo Seat</a>
                     <a href="#video" class="btn btn-secondary">Watch How</a>
@@ -951,8 +962,159 @@
         </div>
     </section>
 
+    <!-- Problem Details Section -->
+    <section class="problem-details-section">
+        <div class="problem-details-container">
+            <div class="problem-details-header">
+                <h2>😓 PROBLEM</h2>
+                <p>If your child understands concepts but still loses marks…</p>
+            </div>
+
+            <div class="problem-details-insight">
+                <p><strong>👉 The problem is NOT concepts or steps</strong></p>
+                <p>It's:</p>
+            </div>
+
+            <div class="problem-details-list">
+                <div class="problem-detail-item">
+                    <span class="problem-icon">❌</span>
+                    <p>Calculation mistakes</p>
+                </div>
+                <div class="problem-detail-item">
+                    <span class="problem-icon">❌</span>
+                    <p>Slow solving speed</p>
+                </div>
+                <div class="problem-detail-item">
+                    <span class="problem-icon">❌</span>
+                    <p>Confusion under exam pressure</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Problems Section - Modernized -->
     <style>
+        /* Problem Details Section */
+        .problem-details-section {
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .problem-details-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .problem-details-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .problem-details-header h2 {
+            font-size: clamp(2rem, 5vw, 2.5rem);
+            color: var(--navy);
+            margin-bottom: 0.75rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+
+        .problem-details-header p {
+            font-size: 1.1rem;
+            color: #666;
+            font-weight: 500;
+            line-height: 1.6;
+        }
+
+        .problem-details-insight {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            padding: 1.5rem;
+            background: rgba(37, 99, 235, 0.05);
+            border-radius: 12px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .problem-details-insight p {
+            font-size: 1rem;
+            color: var(--navy);
+            margin: 0.5rem 0;
+            font-weight: 500;
+        }
+
+        .problem-details-insight p:first-child {
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .problem-details-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .problem-detail-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease;
+            border-top: 3px solid var(--primary);
+        }
+
+        .problem-detail-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .problem-icon {
+            font-size: 2.5rem;
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        .problem-detail-item p {
+            font-size: 1.05rem;
+            color: var(--navy);
+            font-weight: 600;
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 768px) {
+            .problem-details-section {
+                padding: 2.5rem 1.5rem;
+            }
+
+            .problem-details-header h2 {
+                font-size: 1.8rem;
+            }
+
+            .problem-details-header p {
+                font-size: 0.95rem;
+            }
+
+            .problem-details-list {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .problem-detail-item {
+                padding: 1.5rem;
+            }
+
+            .problem-icon {
+                font-size: 2rem;
+                margin-bottom: 0.75rem;
+            }
+
+            .problem-detail-item p {
+                font-size: 0.95rem;
+            }
+        }
+
         .modern-problems-section {
             padding: 6rem 2rem;
             background: linear-gradient(180deg, var(--light-gray) 0%, #f0f4f8 100%);
@@ -1315,9 +1477,10 @@
             <div style="margin-top: 4rem; padding: 2rem; background: rgba(212, 175, 55, 0.1); border-left: 4px solid var(--gold); border-radius: 8px;">
                 <h3 style="font-size: 1.2rem; margin-bottom: 1rem;">These Techniques Help Students:</h3>
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem;">
-                    <div>✓ Solve sums quickly</div>
-                    <div>✓ Reduce calculation errors</div>
-                    <div>✓ Improve speed in exams</div>
+                    <div>✓ Speed and Accuracy in Exam</div>
+                    <div>✓ Time Saving for Tough problems</div>
+                    <div>✓ Alternate ways to Solve</div>
+                    <div>✓ A Tool to recheck answers</div>
                     <div>✓ Score higher in Boards & Olympiads</div>
                 </div>
             </div>
@@ -1655,6 +1818,13 @@
             box-shadow: 0 0 40px rgba(255, 0, 0, 0.8), inset 0 0 30px rgba(255, 255, 255, 0.2);
         }
 
+        /* Hide YouTube, Instagram, and LinkedIn floating icons */
+        .social-icon.youtube,
+        .social-icon.instagram,
+        .social-icon.linkedin {
+            display: none !important;
+        }
+
         .social-icon:hover {
             transform: rotateY(360deg) scale(1.15);
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
@@ -1807,7 +1977,7 @@
             </div>
             <div class="footer-section">
                 <h3>Program Details</h3>
-                <p><strong>For:</strong> Class 10 (CBSE & State)</p>
+                <p><strong>For:</strong> Class 10 (CBSE)</p>
                 <p><strong>Focus:</strong> Vedic Mathematics, Speed, Accuracy</p>
                 <p><strong>Mode:</strong> Online </p>
                 <!-- <p><strong>Location:</strong> Hyderabad</p> -->
