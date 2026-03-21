@@ -269,6 +269,51 @@
             animation: slideUp 1s ease-out 0.35s both;
         }
 
+        /* Bonus Banner Styles */
+        .bonus-banner {
+            margin-top: 2.5rem;
+            width: 100%;
+            background: linear-gradient(90deg, rgba(212, 175, 55, 0.15) 0%, rgba(212, 175, 55, 0.25) 50%, rgba(212, 175, 55, 0.15) 100%);
+            border-radius: 12px;
+            padding: 1rem;
+            overflow: hidden;
+            border: 2px solid rgba(212, 175, 55, 0.4);
+            animation: slideUp 1s ease-out 0.5s both;
+        }
+
+        .bonus-text {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--gold);
+            white-space: nowrap;
+            display: inline-block;
+            animation: marquee 10s linear infinite, pauseMarquee 12s ease-in-out infinite;
+            padding-right: 2rem;
+        }
+
+        @keyframes marquee {
+            0% {
+                transform: translateX(100%);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        @keyframes pauseMarquee {
+            0%, 5% {
+                animation-play-state: running;
+            }
+            95%, 100% {
+                animation-play-state: paused;
+            }
+        }
+
+        .bonus-text::after {
+            content: '✨ Special Bonus with This Session: Compendium of Math Boards Formula ✨';
+            margin-left: 2rem;
+        }
+
         .btn {
             padding: 1rem 2.5rem;
             font-size: 1rem;
@@ -957,6 +1002,13 @@
                 <div class="hero-buttons">
                     <a href="#contact" class="btn btn-primary">✨ Secure Your FREE Demo Seat</a>
                     <a href="#video" class="btn btn-secondary">Watch How</a>
+                </div>
+
+                <!-- Bonus Announcement Banner -->
+                <div class="bonus-banner">
+                    <div class="bonus-text">
+                        ✨ Special Bonus with This Session: Compendium of Math Boards Formula ✨
+                    </div>
                 </div>
             </div>
         </div>
